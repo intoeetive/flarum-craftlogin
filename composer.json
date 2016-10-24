@@ -1,5 +1,5 @@
 {
-    "name": "intoeetive/flarum-craftlogin",
+    "name": "intoeetive/flarum-ext-craftlogin",
     "minimum-stability": "dev",
     "description": "Allow integrated logins from Craft CMS.",
     "type": "flarum-extension",
