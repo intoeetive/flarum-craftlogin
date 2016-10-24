@@ -1,0 +1,29 @@
+{
+    "name": "intoeetive/flarumcraftlogin",
+    "minimum-stability": "dev",
+    "description": "Allow integrated logins from Craft CMS.",
+    "type": "flarum-extension",
+    "keywords": ["authentication"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yuri Salimovskiy",
+            "email": "deep@intoeetive.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Intoeetive\\Flarumcraftlogin\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Craft Login",
+            "icon": {
+                "name": "craft",
+                "backgroundColor": "#55ADEE",
+                "color": "#fff"
+            }
+        }
+    }
+}
