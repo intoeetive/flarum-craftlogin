@@ -1,5 +1,5 @@
 {
-    "name": "intoeetive/flarumcraftlogin",
+    "name": "intoeetive/flarum-craftlogin",
     "minimum-stability": "dev",
     "description": "Allow integrated logins from Craft CMS.",
     "type": "flarum-extension",
@@ -13,7 +13,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Intoeetive\\Flarumcraftlogin\\": "src/"
+            "Intoeetive\\Сraftlogin\\": "src/"
         }
     },
     "extra": {
