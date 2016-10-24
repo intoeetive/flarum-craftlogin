@@ -11,7 +11,8 @@
 namespace Intoeetive\Flarumcraftlogin\Listeners;
 
 use Flarum\Event\ConfigureApiRoutes;
-use Illuminate\Events\Dispatcher;
+use Illuminate\Contracts\Events\Dispatcher;
+use Intoeetive\Flarumcraftlogin\FlarumcraftloginController;
 
 class AddCraftloginRoute
 {
@@ -20,14 +21,14 @@ class AddCraftloginRoute
      */
     public function subscribe(Dispatcher $events)
     {
-        //$events->listen(ConfigureApiRoutes::class, [$this, 'ConfigureApiRoutes']);
+        $events->listen(ConfigureApiRoutes::class, [$this, 'configureApiRoutes']);
     }
 
     /**
      * @param ConfigureApiRoutes $event
      */
-    /*public function ConfigureApiRoutes(ConfigureApiRoutes $event)
+    public function configureApiRoutes(ConfigureApiRoutes $event)
     {
-        $event->post('/login/craft', 'login.craft', Intoeetive\Craftlogin\FlarumcraftloginController::class);
-    }*/
+        $event->post('/login/craft', 'login.craft', FlarumcraftloginController::class);
+    }
 }

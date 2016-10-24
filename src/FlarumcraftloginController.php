@@ -10,16 +10,14 @@
 
 namespace Intoeetive\Flarumcraftlogin;
 
-use Flarum\Forum\Controller\WriteRememberCookieTrait;
-use Flarum\Forum\UrlGenerator;
 use Flarum\Http\Controller\ControllerInterface;
 use Flarum\Settings\SettingsRepositoryInterface;
-use Illuminate\Contracts\Bus\Dispatcher;
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Zend\Diactoros\Response\RedirectResponse;
+use Psr\Http\Message\ServerRequestInterface;
+use Zend\Diactoros\Response\EmptyResponse;
+use Zend\Diactoros\Response\JsonResponse;
 
 
-use Flarum\Api\AccessToken;
+use Flarum\Http\AccessToken;
 use Flarum\Api\ApiKey;
 use Flarum\Core\Guest;
 use Flarum\Core\User;
@@ -29,9 +27,15 @@ use Guzzle\Http\Message\Response;
 use Flarum\Api\Command\GenerateAccessToken;
 use DateTime;
 
+
+use Flarum\Forum\Controller\WriteRememberCookieTrait;
+use Flarum\Forum\UrlGenerator;
+use Illuminate\Contracts\Bus\Dispatcher;
+
+
 class FlarumcraftloginController implements ControllerInterface
 {
-    use WriteRememberCookieTrait;
+    //use WriteRememberCookieTrait;
     
     protected $prefix = 'Token ';
 
@@ -44,6 +48,7 @@ class FlarumcraftloginController implements ControllerInterface
      * @var UrlGenerator
      */
     protected $url;
+    protected $bus;
 
     /**
      * @param SettingsRepositoryInterface $settings
@@ -62,18 +67,20 @@ class FlarumcraftloginController implements ControllerInterface
      * @param array $routeParams
      * @return \Psr\Http\Message\ResponseInterface|RedirectResponse
      */
-    public function handle(Request $request, array $routeParams = [])
+    public function handle(ServerRequestInterface $request, array $routeParams = [])
     {
         $header = $request->getHeaderLine('authorization');
 
         $parts = explode(';', $header);
 
         $actor = new Guest;
+        
+        
 
         if (isset($parts[0]) && starts_with($parts[0], $this->prefix)) {
             $token = substr($parts[0], strlen($this->prefix));
 
-            if (($accessToken = AccessToken::find($token)) && $accessToken->isValid()) {
+            if (($accessToken = AccessToken::find($token)) && $accessToken!=NULL){// $accessToken->isValid()) {
                 $actor = $accessToken->user;
 
                 $actor->updateLastSeen()->save();
@@ -117,17 +124,23 @@ class FlarumcraftloginController implements ControllerInterface
                     $user->save();
                 }
                 $payload = ['authenticated' => true];
+
+                $token = AccessToken::generate($user->id, 1209600);
+                $token->save();
+                $tokenId = $token->getAttribute('id');
                 
-                $accessToken = $this->bus->dispatch(new GenerateAccessToken($user->id));
+                /*$accessToken = $this->bus->dispatch(new GenerateAccessToken($user->id));
+                
                 $accessToken::unguard();
                 $accessToken->update(['expires_at' => new DateTime('+2 weeks')]);
-
-                echo $accessToken->id;
+*/
+                echo $tokenId;
+                exit();
             } 
         
         }
         
-        echo "";
+        exit();
         
     }
 }
