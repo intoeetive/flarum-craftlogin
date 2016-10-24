@@ -12,6 +12,9 @@
             "email": "deep@intoeetive.com"
         }
     ],
+    "require": {
+        "flarum/core": "^0.1.0-beta.3"
+    },
     "autoload": {
         "psr-4": {
             "Intoeetive\\Сraftlogin\\": "src/"
