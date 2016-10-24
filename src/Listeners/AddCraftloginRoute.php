@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Intoeetive\Craftlogin\Listeners;
+namespace Intoeetive\Flarumcraftlogin\Listeners;
 
 use Flarum\Event\ConfigureApiRoutes;
 use Illuminate\Events\Dispatcher;
@@ -28,6 +28,6 @@ class AddCraftloginRoute
      */
     /*public function ConfigureApiRoutes(ConfigureApiRoutes $event)
     {
-        $event->post('/login/craft', 'login.craft', Intoeetive\Craftlogin\CraftloginController::class);
+        $event->post('/login/craft', 'login.craft', Intoeetive\Craftlogin\FlarumcraftloginController::class);
     }*/
 }

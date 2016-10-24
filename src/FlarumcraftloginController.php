@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Intoeetive\Craftlogin;
+namespace Intoeetive\Flarumcraftlogin;
 
 use Flarum\Forum\Controller\WriteRememberCookieTrait;
 use Flarum\Forum\UrlGenerator;
@@ -29,7 +29,7 @@ use Guzzle\Http\Message\Response;
 use Flarum\Api\Command\GenerateAccessToken;
 use DateTime;
 
-class CraftloginController implements ControllerInterface
+class FlarumcraftloginController implements ControllerInterface
 {
     use WriteRememberCookieTrait;
     

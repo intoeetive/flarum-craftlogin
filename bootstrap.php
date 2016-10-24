@@ -1,6 +1,6 @@
 <?php
 
-namespace Intoeetive\Craftlogin;
+namespace Intoeetive\Flarumcraftlogin;
 
 use Illuminate\Contracts\Events\Dispatcher;
 
