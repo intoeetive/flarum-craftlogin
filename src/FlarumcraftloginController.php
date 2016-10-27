@@ -114,7 +114,7 @@ class FlarumcraftloginController implements ControllerInterface
             
             $data = $request->getParsedBody();
             
-            $user = User::where(['username' => $data['username']])->first();
+            $user = User::where(['email' => $data['email']])->first();
 
             if ($user) {
                 
